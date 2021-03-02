@@ -8,7 +8,7 @@ onready var collision_transform = $CollisionShape2D.get_transform().get_scale()
 
 onready var target_y = position.y
 
-var color = Color(1,1,1,1)
+var color = Color(173,181,189)
 
 
 func _ready():
@@ -21,7 +21,7 @@ func _physics_process(_delta):
 	target = clamp(target, 0, get_viewport().size.x)
 
 	var d = abs(target - position.x)						# distance between the mouse and the paddle
-	var p = d / get_viewport().get_visible_rect().size.x	# percentage of the total viewport
+	var _p = d / get_viewport().get_visible_rect().size.x	# percentage of the total viewport
 	var t = clamp(d, d, speed)							# how much to move the paddle this cycle (maximum of speed)
 	var s = sign(target - position.x)					# which direction to move
 	
@@ -39,5 +39,8 @@ func update_color():
 	else:
 		$Color.color = Color(1,1,1,1)
 
-func emit_particle(pos):
-	pass
+func emit_particle(_pos):
+	if HUD.particle_paddle:
+		get_parent().find_node("Particles2D").global_position = _pos
+		get_parent().find_node("Particles2D").emitting = true
+		get_parent().find_node("Particles2D").look_at(_pos)
