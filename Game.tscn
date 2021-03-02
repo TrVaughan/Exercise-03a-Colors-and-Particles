@@ -10,26 +10,26 @@
 [ext_resource path="res://Assets/confetti.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Datalegreya-Thin.otf" type="DynamicFontData" id=16]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=3]
 min_value = -1.0
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, -1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=6]
 curve = SubResource( 5 )
 
-[sub_resource type="Curve" id=7]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=8]
-curve = SubResource( 7 )
-
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=7]
 flag_disable_z = true
 spread = 75.0
 gravity = Vector3( 0, 98, 0 )
@@ -43,36 +43,36 @@ radial_accel = 100.0
 radial_accel_random = 1.0
 scale = 0.25
 scale_random = 0.25
-scale_curve = SubResource( 8 )
-color_ramp = SubResource( 4 )
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 2 )
 hue_variation = 0.1
 hue_variation_random = 0.5
-hue_variation_curve = SubResource( 6 )
+hue_variation_curve = SubResource( 4 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 50, 10 )
 
-[sub_resource type="Curve" id=10]
+[sub_resource type="Curve" id=9]
 min_value = -360.0
 max_value = 360.0
 _data = [ Vector2( 0, 360 ), 0.0, 0.0, 0, 0, Vector2( 1, -360 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=11]
-curve = SubResource( 10 )
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
 
-[sub_resource type="Gradient" id=12]
+[sub_resource type="Gradient" id=11]
 colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=13]
-gradient = SubResource( 12 )
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
 
-[sub_resource type="Curve" id=14]
+[sub_resource type="Curve" id=13]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.994506, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=15]
-curve = SubResource( 14 )
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
 
-[sub_resource type="ParticlesMaterial" id=16]
+[sub_resource type="ParticlesMaterial" id=15]
 flag_disable_z = true
 spread = 60.0
 gravity = Vector3( 0, 98, 0 )
@@ -83,15 +83,15 @@ angular_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle_random = 0.5
-angle_curve = SubResource( 11 )
+angle_curve = SubResource( 10 )
 scale = 0.5
 scale_random = 0.5
-scale_curve = SubResource( 15 )
-color_ramp = SubResource( 13 )
+scale_curve = SubResource( 14 )
+color_ramp = SubResource( 12 )
 hue_variation = 0.7
 hue_variation_random = 0.25
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=16]
 size = 36
 font_data = ExtResource( 16 )
 
@@ -122,7 +122,7 @@ polygon = PoolVector2Array( 0, 0, 0, 768, 1024, 768, 1024, 0, 64, 0, 64, -64, 10
 emitting = false
 lifetime = 0.4
 one_shot = true
-process_material = SubResource( 9 )
+process_material = SubResource( 7 )
 texture = ExtResource( 7 )
 
 [node name="Bricks" type="Node2D" parent="."]
@@ -144,14 +144,14 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle_Container/Paddle"]
 position = Vector2( 0, 10 )
-shape = SubResource( 1 )
+shape = SubResource( 8 )
 
 [node name="Particles2D" type="Particles2D" parent="Paddle_Container/Paddle"]
 emitting = false
 amount = 6
 lifetime = 0.4
 one_shot = true
-process_material = SubResource( 16 )
+process_material = SubResource( 15 )
 texture = ExtResource( 8 )
 
 [node name="Ball_Container" type="Node2D" parent="."]
@@ -164,7 +164,7 @@ script = ExtResource( 2 )
 [node name="Countdown" type="Label" parent="Starting"]
 margin_right = 1024.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 16 )
 text = "Starting in: "
 align = 1
 valign = 1
