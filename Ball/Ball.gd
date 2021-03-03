@@ -36,3 +36,8 @@ func update_color():
 		$Color.color = color
 	else:
 		$Color.color = Color(1,1,1,1)
+	if HUD.particle_ball:
+		$Particles2D.emitting = true
+	else:
+		$Particles2D.emitting = false
+

@@ -60,4 +60,7 @@ func update_color():
 		$Color.color = Color(1,1,1,1)
 
 func emit_particle(_pos):
-	pass
+	if HUD.particle_blocks:
+		$Particles2D.texture = textures[randi() % textures.size()]
+		$Particles2D.emitting = true
+		$Particles2D.global_position = _pos
